@@ -1,0 +1,5 @@
+Credentials cache: API:7540F7BE-EF47-474C-8373-8CFC7E39E280
+        Principal: olabrahm@1337.MA
+
+  Issued                Expires             Flags    Principal
+Sep 20 12:55:27 2021  Sep 20 22:55:21 2021  FPIA   krbtgt/1337.MA@1337.MA
