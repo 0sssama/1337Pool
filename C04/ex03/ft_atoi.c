@@ -28,6 +28,11 @@ int		ft_check_positivity(char *str);
  * if the string doesn't contain a number.
 */
 
+/*
+
+	Note : Whoops, maybe this useful is pretty useless. I dropped the idea.
+	--
+
 char	*ft_get_number(char *str)
 {
 	int		i;
@@ -36,22 +41,17 @@ char	*ft_get_number(char *str)
 
 	i = 0;
 	j = 0;
-	number = "";
-	while (str[i])
+	number = "0000000000";
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		if (str[i] >= '0' && str[i] <= '9')
-		{
-			number[j] = str[i];
-			j++;
-		}
-		else
-			break ;
+		number[j] = str[i];
+		j++;
 		i++;
 	}
 	number[j] = '\0';
 	return (number);
 }
-
+*/
 
 /*
  * Given a string with an arbitray amount of
@@ -79,17 +79,14 @@ int	ft_atoi(char *str)
 	int		is_negative;
 	int		i;
 	char	*pos_string;
-	char	*number;
-	
-	number = ft_get_number(str);
+
 	output = 0;
 	pos_string = str;
-	is_negative = 0; // comment this when ft_get_positivity is created.
-	// is_negative = !ft_get_positivity(pos_string);
+	is_negative = 0;
 	i = 0;
-	while (number[i])
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		output = output * 10 + (number[i] + 48);
+		output = output * 10 + (str[i] - 48);
 		i++;
 	}
 	if (is_negative)
@@ -99,6 +96,6 @@ int	ft_atoi(char *str)
 
 int	main(void)
 {
-	char	*number = ft_get_number("26654x");
-	printf("%s\n", number);
+	int	output = ft_atoi("26654x");
+	printf("%d\n", output);
 }
