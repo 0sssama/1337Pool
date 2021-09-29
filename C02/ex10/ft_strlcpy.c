@@ -6,7 +6,7 @@
 /*   By: olabrahm <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 08:10:19 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/09/27 11:19:26 by olabrahm         ###   ########.fr       */
+/*   Updated: 2021/09/28 14:17:22 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ unsigned int	ft_strlen(char *str)
 	i = 0;
 	while (str[i])
 	{
-		i++
+		i++;
 	}
 	return (i);
 }

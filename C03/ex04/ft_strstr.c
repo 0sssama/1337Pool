@@ -6,7 +6,7 @@
 /*   By: olabrahm <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 08:26:22 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/09/26 09:00:42 by olabrahm         ###   ########.fr       */
+/*   Updated: 2021/09/28 12:05:22 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,5 @@ char	*ft_strstr(char *str, char *to_find)
 		}
 		i++;
 	}
-	return (NULL);
+	return (0);
 }
