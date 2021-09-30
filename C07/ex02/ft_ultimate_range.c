@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_ultimate_range.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olabrahm <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/27 18:11:13 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/09/30 14:07:51 by olabrahm         ###   ########.fr       */
+/*   Created: 2021/09/30 15:51:20 by olabrahm          #+#    #+#             */
+/*   Updated: 2021/09/30 16:58:51 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
 
-void	ft_putstr(char *str)
+int	ft_ultimate_range(int **range, int min, int max)
 {
 	int	i;
+	int	current_num;
 
-	i = 0;
-	while (str[i])
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
+	:wq
+
 }

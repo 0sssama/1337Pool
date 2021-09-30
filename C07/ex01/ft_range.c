@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_range.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olabrahm <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/27 18:11:13 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/09/30 14:07:51 by olabrahm         ###   ########.fr       */
+/*   Created: 2021/09/30 14:25:33 by olabrahm          #+#    #+#             */
+/*   Updated: 2021/09/30 15:50:58 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
 
-void	ft_putstr(char *str)
+int	*ft_range(int min, int max)
 {
+	int	range_len;
+	int	*table_ptr;
+	int	current_num;
 	int	i;
 
+	range_len = max - min;
+	table_ptr = malloc(4 * range_len);
+	current_num = min;
 	i = 0;
-	while (str[i])
+	if (range_len <= 0)
+		return (0);
+	while (current_num < max)
 	{
-		write(1, &str[i], 1);
+		table_ptr[i] = current_num;
+		current_num++;
 		i++;
 	}
+	return (table_ptr);
 }

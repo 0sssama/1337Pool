@@ -1,42 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olabrahm <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/27 18:16:44 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/09/30 14:10:15 by olabrahm         ###   ########.fr       */
+/*   Created: 2021/09/30 14:16:19 by olabrahm          #+#    #+#             */
+/*   Updated: 2021/09/30 14:25:11 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_is_space(char c)
+#include <stdlib.h>
+
+int	ft_strlen(char *str)
 {
-	return (c == ' ' || c == '\t' || c == '\r'
-		|| c == '\f' || c == '\v' || c == '\n');
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
 
-int	ft_atoi(char *str)
+char	*ft_strdup(char *src)
 {
-	int		output;
-	int		negative;
+	char	*ptr;
 	int		i;
 
-	output = 0;
-	negative = 1;
+	ptr = malloc(ft_strlen(src));
 	i = 0;
-	while (ft_is_space(str[i]))
-		i++;
-	while (str[i] == '+' || str[i] == '-')
+	while (src[i])
 	{
-		if (str[i] == '-')
-			negative *= -1;
+		ptr[i] = src[i];
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		output = output * 10 + (str[i] - 48);
-		i++;
-	}
-	return (output * negative);
+	ptr[i] = '\0';
+	return (ptr);
 }

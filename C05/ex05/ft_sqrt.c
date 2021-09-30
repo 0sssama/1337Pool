@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olabrahm <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/27 18:11:13 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/09/30 14:07:51 by olabrahm         ###   ########.fr       */
+/*   Created: 2021/09/30 11:36:32 by olabrahm          #+#    #+#             */
+/*   Updated: 2021/09/30 11:56:00 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+int	ft_power(int nb, int power)
+{
+	if (power == 0 || nb == 1)
+		return (1);
+	else if (nb == 0 || power < 0)
+		return (0);
+	else
+		return (nb * ft_power(nb, power - 1));
+}
 
-void	ft_putstr(char *str)
+int	ft_sqrt(int nb)
 {
 	int	i;
 
 	i = 0;
-	while (str[i])
+	while (i <= nb)
 	{
-		write(1, &str[i], 1);
+		if (ft_power(i, 2) == nb)
+			return (i);
 		i++;
 	}
+	return (0);
 }

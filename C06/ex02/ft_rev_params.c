@@ -1,42 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_rev_params.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olabrahm <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/27 18:16:44 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/09/30 14:10:15 by olabrahm         ###   ########.fr       */
+/*   Created: 2021/09/30 12:24:04 by olabrahm          #+#    #+#             */
+/*   Updated: 2021/09/30 12:34:56 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_is_space(char c)
+#include <unistd.h>
+
+void	ft_putstr(char *str)
 {
-	return (c == ' ' || c == '\t' || c == '\r'
-		|| c == '\f' || c == '\v' || c == '\n');
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
 }
 
-int	ft_atoi(char *str)
+int	main(int ac, char **av)
 {
-	int		output;
-	int		negative;
-	int		i;
+	int	i;
 
-	output = 0;
-	negative = 1;
-	i = 0;
-	while (ft_is_space(str[i]))
-		i++;
-	while (str[i] == '+' || str[i] == '-')
+	i = ac - 1;
+	while (i > 0)
 	{
-		if (str[i] == '-')
-			negative *= -1;
-		i++;
+		ft_putstr(av[i]);
+		if (i != 1)
+			ft_putstr("\n");
+		i--;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		output = output * 10 + (str[i] - 48);
-		i++;
-	}
-	return (output * negative);
 }

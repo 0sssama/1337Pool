@@ -6,7 +6,7 @@
 /*   By: olabrahm <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 07:34:37 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/09/29 16:48:33 by olabrahm         ###   ########.fr       */
+/*   Updated: 2021/09/30 14:09:35 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ int	ft_base_valid(char *base)
 void	ft_print_base_value(int nbr, int base_len, char *base)
 {
 	unsigned int	i;
+	unsigned int	bl;
 
+	bl = (unsigned int) base_len;
 	if (nbr < 0)
 	{
 		write(1, "-", 1);
@@ -57,10 +59,10 @@ void	ft_print_base_value(int nbr, int base_len, char *base)
 	}
 	else
 		i = (unsigned int) nbr;
-	if (i >= base_len)
+	if (i >= bl)
 	{
-		ft_print_base_value(i / base_len, base_len, base);
-		ft_print_base_value(i % base_len, base_len, base);
+		ft_print_base_value(i / bl, base_len, base);
+		ft_print_base_value(i % bl, base_len, base);
 	}
 	else
 		write(1, &base[i], 1);
