@@ -1,78 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sort_params.c                                   :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olabrahm <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/30 12:26:26 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/10/01 20:53:42 by olabrahm         ###   ########.fr       */
+/*   Created: 2021/10/02 18:18:12 by olabrahm          #+#    #+#             */
+/*   Updated: 2021/10/02 18:18:13 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-void	ft_putstr(char *str)
+int	ft_strlen(char *str)
 {
 	int	i;
 
 	i = 0;
 	while (str[i])
-	{
-		write(1, &str[i], 1);
 		i++;
-	}
+	return (i);
 }
 
-int	ft_ascii(char *str)
+int	ft_ct_occurrences(char *str, char *charset)
 {
 	int	i;
-	int	output;
+	int	j;
+	int	occurrences;
 
 	i = 0;
-	output = 0;
+	occurrences = 0;
 	while (str[i])
 	{
-		output += str[i];
-		i++;
-	}
-	return (output);
-}
-
-void	ft_sort(int ac, char **av)
-{
-	char	*swap;
-	int		i;
-	int		j;
-
-	i = 1;
-	while (i < ac - 1)
-	{
-		j = i + 1;
-		while (j < ac)
+		j = 0;
+		while (str[i + j] == charset[j])
 		{
-			if (ft_ascii(av[i]) > ft_ascii(av[j]))
+			if (charset[j + 1] == '\0')
 			{
-				swap = av[i];
-				av[i] = av[j];
-				av[j] = swap;
+				occurrences++;
+				break ;
 			}
 			j++;
 		}
 		i++;
 	}
+	return (occurrences);
+}
+
+char	**ft_split(char *str, char *charset)
+{
+	
 }
 
 int	main(int ac, char **av)
 {
-	int		i;
-
-	i = 1;
-	ft_sort(ac, av);
-	while (i < ac)
-	{
-		ft_putstr(av[i]);
-		ft_putstr("\n");
-		i++;
-	}
+	printf("%d\n", ft_get_len(av[1], av[2]));
 }

@@ -32,8 +32,7 @@ int	main(int ac, char **av)
 	while (i > 0)
 	{
 		ft_putstr(av[i]);
-		if (i != 1)
-			ft_putstr("\n");
+		ft_putstr("\n");
 		i--;
 	}
 }

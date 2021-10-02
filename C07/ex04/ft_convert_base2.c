@@ -1,49 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*   ft_convert_base2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olabrahm <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/29 07:34:37 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/10/02 20:53:44 by olabrahm         ###   ########.fr       */
+/*   Created: 2021/10/02 15:09:00 by olabrahm          #+#    #+#             */
+/*   Updated: 2021/10/02 15:09:01 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-int	ft_strlen(char *str)
+int		ft_strlen(char *str);
+int		ft_get_index(char c, char *str);
+int		ft_is_space(char c);
+int		g_output_index = 0;
+char	*g_output_str;
+
+int	ft_atoi_base(char *str, char *base)
 {
+	int	output;
+	int	negative;
 	int	i;
 
+	negative = 1;
 	i = 0;
-	while (str[i])
+	output = 0;
+	while (ft_is_space(str[i]))
 		i++;
-	return (i);
-}
-
-int	ft_base_valid(char *base)
-{
-	int	i;
-	int	j;
-	int	base_len;
-
-	i = 0;
-	base_len = ft_strlen(base);
-	if (base_len < 2 || base[0] == '+' || base[0] == '-')
-		return (0);
-	while (i < base_len - 1)
+	while (str[i] == '+' || str[i] == '-')
 	{
-		j = i + 1;
-		while (j < base_len)
-		{
-			if (base[i] == base[j] || base[j] == '+' || base[j] == '-')
-				return (0);
-			j++;
-		}
+		if (str[i] == '-')
+			negative *= -1;
 		i++;
 	}
-	return (1);
+	while (str[i] && ft_get_index(str[i], base) >= 0)
+		output = (output * ft_strlen(base)) + ft_get_index(str[i++], base);
+	return (output * negative);
 }
 
 void	ft_print_base_value(int nbr, int base_len, char *base)
@@ -54,7 +50,8 @@ void	ft_print_base_value(int nbr, int base_len, char *base)
 	bl = (unsigned int) base_len;
 	if (nbr < 0)
 	{
-		write(1, "-", 1);
+		g_output_str[0] = '-';
+		g_output_index++;
 		i = (unsigned int)(nbr * -1);
 	}
 	else
@@ -65,15 +62,22 @@ void	ft_print_base_value(int nbr, int base_len, char *base)
 		ft_print_base_value(i % bl, base_len, base);
 	}
 	else
-		write(1, &base[i], 1);
+	{
+		g_output_str[g_output_index] = base[i];
+		g_output_index++;
+	}
 }
 
-void	ft_putnbr_base(int nbr, char *base)
+char	*ft_putnbr_base(int nbr, char *base)
 {
 	int	base_len;
 
 	base_len = ft_strlen(base);
-	if (!ft_base_valid(base))
-		return ;
+	g_output_str = (char *) malloc(512 * sizeof(char));
+	if (g_output_str == 0)
+		return (0);
 	ft_print_base_value(nbr, base_len, base);
+	g_output_str[g_output_index] = '\0';
+	free(g_output_str);
+	return (g_output_str);
 }

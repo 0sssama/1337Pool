@@ -6,7 +6,7 @@
 /*   By: olabrahm <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 14:25:33 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/09/30 15:50:58 by olabrahm         ###   ########.fr       */
+/*   Updated: 2021/10/01 20:13:21 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	*ft_range(int min, int max)
 	int	i;
 
 	range_len = max - min;
-	table_ptr = malloc(4 * range_len);
+	table_ptr = (int *) malloc(range_len * sizeof(int));
 	current_num = min;
 	i = 0;
 	if (range_len <= 0)
