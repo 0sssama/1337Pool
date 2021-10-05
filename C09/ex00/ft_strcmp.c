@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olabrahm <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: olabrahm <olabrahm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/30 11:36:32 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/09/30 11:56:00 by olabrahm         ###   ########.fr       */
+/*   Created: 2021/10/05 10:59:03 by olabrahm          #+#    #+#             */
+/*   Updated: 2021/10/05 11:00:02 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_sqrt(int nb)
+int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
-	int	max;
 
 	i = 0;
-	if (nb == 1)
-		return (1);
-	if (nb / 2 > 46340)
-		max = 46340;
-	else
-		max = nb / 2;
-	while (i <= max)
-	{
-		if (i * i == nb)
-			return (i);
+	while (s1[i] && s2[i] && s1[i] == s2[i])
 		i++;
-	}
-	return (0);
+	return (s1[i] - s2[i]);
 }

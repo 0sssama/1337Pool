@@ -24,19 +24,16 @@ void	ft_putstr(char *str)
 	}
 }
 
-int	ft_ascii(char *str)
+int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
-	int	output;
 
 	i = 0;
-	output = 0;
-	while (str[i])
+	while (s1[i] && s2[i] && s1[i] == s2[i])
 	{
-		output += str[i];
 		i++;
 	}
-	return (output);
+	return (s1[i] - s2[i]);
 }
 
 void	ft_sort(int ac, char **av)
@@ -51,7 +48,7 @@ void	ft_sort(int ac, char **av)
 		j = i + 1;
 		while (j < ac)
 		{
-			if (ft_ascii(av[i]) > ft_ascii(av[j]))
+			if (ft_strcmp(av[i], av[j]) > 0)
 			{
 				swap = av[i];
 				av[i] = av[j];

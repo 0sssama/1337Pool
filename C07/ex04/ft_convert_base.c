@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_convert_base.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olabrahm <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: olabrahm <olabrahm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 14:54:45 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/10/02 14:54:47 by olabrahm         ###   ########.fr       */
+/*   Updated: 2021/10/04 16:46:23 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
+int	ft_is_space(char c)
+{
+	return (c == ' ' || c == '\t' || c == '\r'
+		|| c == '\f' || c == '\v' || c == '\n');
+}
+
 int	ft_base_valid(char *base)
 {
 	int	i;
@@ -36,7 +42,7 @@ int	ft_base_valid(char *base)
 		return (0);
 	while (base[i])
 	{
-		if (base[i] == '+' || base[i] == '-')
+		if (base[i] == '+' || base[i] == '-' || ft_is_space(base[i]))
 			return (0);
 		i++;
 	}
@@ -53,12 +59,6 @@ int	ft_base_valid(char *base)
 		i++;
 	}
 	return (1);
-}
-
-int	ft_is_space(char c)
-{
-	return (c == ' ' || c == '\t' || c == '\r'
-		|| c == '\f' || c == '\v' || c == '\n');
 }
 
 int	ft_get_index(char c, char *str)

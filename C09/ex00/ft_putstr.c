@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olabrahm <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: olabrahm <olabrahm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/30 11:36:32 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/09/30 11:56:00 by olabrahm         ###   ########.fr       */
+/*   Created: 2021/10/05 10:57:43 by olabrahm          #+#    #+#             */
+/*   Updated: 2021/10/05 17:11:05 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_sqrt(int nb)
+#include <unistd.h>
+
+void	ft_putstr(char *str)
 {
 	int	i;
-	int	max;
 
 	i = 0;
-	if (nb == 1)
-		return (1);
-	if (nb / 2 > 46340)
-		max = 46340;
-	else
-		max = nb / 2;
-	while (i <= max)
-	{
-		if (i * i == nb)
-			return (i);
-		i++;
-	}
-	return (0);
+	while (str[i])
+		write(1, &str[i++], 1);
 }

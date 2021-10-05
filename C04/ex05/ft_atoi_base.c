@@ -20,6 +20,12 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
+int	ft_is_space(char c)
+{
+	return (c == ' ' || c == '\t' || c == '\r'
+		|| c == '\f' || c == '\v' || c == '\n');
+}
+
 int	ft_valid(char *base, char *str)
 {
 	int	i;
@@ -30,26 +36,20 @@ int	ft_valid(char *base, char *str)
 	base_len = ft_strlen(base);
 	if (!str || !base)
 		return (0);
-	if (base_len < 2 || base[0] == '+' || base[0] == '-')
+	if (base_len < 2 || base[0] == '+' || base[0] == '-' || ft_is_space(base[0]))
 		return (0);
 	while (i < base_len - 1)
 	{
 		j = i + 1;
 		while (j < base_len)
 		{
-			if (base[i] == base[j] || base[j] == '+' || base[j] == '-')
+			if (base[i] == base[j] || base[j] == '+' || base[j] == '-' || ft_is_space(base[j]))
 				return (0);
 			j++;
 		}
 		i++;
 	}
 	return (1);
-}
-
-int	ft_is_space(char c)
-{
-	return (c == ' ' || c == '\t' || c == '\r'
-		|| c == '\f' || c == '\v' || c == '\n');
 }
 
 int	ft_get_index(char c, char *str)

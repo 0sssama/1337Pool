@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
 int	ft_is_prime(int nb)
 {
 	int	i;
@@ -33,7 +31,11 @@ int	ft_find_next_prime(int nb)
 	int	i;
 
 	i = nb;
-	while (!ft_is_prime(i))
+	if (nb < 2)
+		return (2);
+	if (nb > 2147483629 && nb <= 2147483647)
+		return (2147483647);
+	while (!ft_is_prime(i) && i < 2147483647)
 		i++;
 	return (i);
 }
