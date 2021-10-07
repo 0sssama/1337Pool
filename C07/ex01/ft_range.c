@@ -6,12 +6,11 @@
 /*   By: olabrahm <olabrahm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 14:25:33 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/10/04 18:37:12 by olabrahm         ###   ########.fr       */
+/*   Updated: 2021/10/07 16:11:47 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 
 int	*ft_range(int min, int max)
 {
@@ -20,9 +19,11 @@ int	*ft_range(int min, int max)
 	int	current_num;
 	int	i;
 
+	if (max <= min)
+		return (0);
 	range_len = max - min;
 	table_ptr = (int *) malloc(range_len * sizeof(int));
-	if (range_len <= 0 || !table_ptr)
+	if (table_ptr == 0)
 		return (0);
 	current_num = min;
 	i = 0;

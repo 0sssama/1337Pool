@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ultimate_range.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olabrahm <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: olabrahm <olabrahm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 15:51:20 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/10/01 20:14:59 by olabrahm         ###   ########.fr       */
+/*   Updated: 2021/10/07 09:11:24 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ int	ft_ultimate_range(int **range, int min, int max)
 	int	range_len;
 	int	*table_ptr;
 
-	range_len = max - min;
-	if (range_len <= 0)
+	if (max <= min)
 	{
 		*range = 0;
 		return (0);
 	}
+	range_len = max - min;
 	table_ptr = (int *) malloc(range_len * sizeof(int));
-	if (!table_ptr)
+	if (table_ptr == 0)
 		return (-1);
 	current_num = min;
 	i = 0;

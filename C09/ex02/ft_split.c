@@ -6,10 +6,11 @@
 /*   By: olabrahm <olabrahm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 08:37:47 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/10/06 16:51:10 by olabrahm         ###   ########.fr       */
+/*   Updated: 2021/10/06 16:13:42 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <stdlib.h>
 
 int	ft_in_charset(char c, char *charset)

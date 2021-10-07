@@ -6,17 +6,16 @@
 /*   By: olabrahm <olabrahm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 15:09:00 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/10/04 16:49:05 by olabrahm         ###   ########.fr       */
+/*   Updated: 2021/10/07 16:19:19 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
 #include <stdlib.h>
 
 int		ft_strlen(char *str);
 int		ft_get_index(char c, char *str);
 int		ft_is_space(char c);
+int		g_start_index = 0;
 int		g_output_index = 0;
 char	*g_output_str;
 
@@ -42,6 +41,41 @@ int	ft_atoi_base(char *str, char *base)
 	return (output * negative);
 }
 
+void	ft_rev_str(char *str, int start_index)
+{
+	int		i;
+	int		j;
+	int		str_len;
+	char	temp;
+
+	i = start_index;
+	str_len = ft_strlen(str);
+	j = str_len - 1;
+	while (i < j)
+	{
+		temp = str[i];
+		str[i] = str[j];
+		str[j] = temp;
+		i++;
+		j--;
+	}
+}
+
+int	ft_get_size(int nbr, int len)
+{
+	int	i;
+
+	if (nbr == 0)
+		return (1);
+	i = 1;
+	while (nbr)
+	{
+		nbr /= len;
+		i++;
+	}
+	return (i);
+}
+
 void	ft_print_base_value(int nbr, int base_len, char *base)
 {
 	unsigned int	i;
@@ -51,33 +85,39 @@ void	ft_print_base_value(int nbr, int base_len, char *base)
 	if (nbr < 0)
 	{
 		g_output_str[0] = '-';
+		g_start_index = 1;
 		g_output_index++;
 		i = (unsigned int)(nbr * -1);
 	}
 	else
 		i = (unsigned int) nbr;
-	if (i >= bl)
+	if (i == 0)
 	{
-		ft_print_base_value(i / bl, base_len, base);
-		ft_print_base_value(i % bl, base_len, base);
-	}
-	else
-	{
-		g_output_str[g_output_index] = base[i];
+		g_output_str[g_output_index] = base[0];
 		g_output_index++;
+	}
+	while (i)
+	{
+		g_output_str[g_output_index] = base[i % base_len];
+		g_output_index++;
+		i /= base_len;
 	}
 }
 
 char	*ft_putnbr_base(int nbr, char *base)
 {
-	int	base_len;
+	int		base_len;
+	int		size;
 
 	base_len = ft_strlen(base);
-	g_output_str = (char *) malloc(512 * sizeof(char));
+	size = ft_get_size(nbr, base_len);
+	if (nbr < 0)
+		size++;
+	g_output_str = (char *) malloc(size * sizeof(char) + 1);
 	if (g_output_str == 0)
 		return (0);
 	ft_print_base_value(nbr, base_len, base);
 	g_output_str[g_output_index] = '\0';
-	free(g_output_str);
+	ft_rev_str(g_output_str, g_start_index);
 	return (g_output_str);
 }

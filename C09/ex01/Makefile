@@ -1,21 +1,30 @@
 CC = gcc
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -c
 S = srcs/ft_
+FILES = putchar swap putstr strlen strcmp
+SRCS = $(addprefix srcs/ft_, $(addsuffix .c, ${FILES}))
+OBJCTS = $(addprefix srcs/ft_, $(addsuffix .o, ${FILES}))
+LIB = libft.a
+RM= rm -f
+AR= ar rcs
 
-all: libft.a
+all: ${LIB}
 
-libft.a: ${S}putchar.c ${S}strlen.c ${S}putstr.c ${S}strcmp.c ${S}swap.c includes/ft.h
-	CC -c ${FLAGS} ${S}putchar.c -o ${S}putchar.o
-	CC -c ${FLAGS} ${S}strlen.c -o ${S}strlen.o
-	CC -c ${FLAGS} ${S}putstr.c -o ${S}putstr.o
-	CC -c ${FLAGS} ${S}strcmp.c -o ${S}strcmp.o
-	CC -c ${FLAGS} ${S}swap.c -o ${S}swap.o
-	ar rcs libft.a srcs/*.o
+
+${LIB}: ${OBJCTS}
+	${AR} ${LIB} ${OBJCTS}
+
+${OBJCTS}: ${SRCS}
+	${CC} ${FLAGS} ${S}putchar.c -o ${S}putchar.o
+	${CC} ${FLAGS} ${S}strlen.c -o ${S}strlen.o
+	${CC} ${FLAGS} ${S}strcmp.c -o ${S}strcmp.o
+	${CC} ${FLAGS} ${S}putstr.c -o ${S}putstr.o
+	${CC} ${FLAGS} ${S}swap.c -o ${S}swap.o
 
 clean:
-	find . -type f -name "*.o" -delete
+	${RM} ${OBJCTS}
 
 fclean: clean
-	find . -type f \( -name "a.out" -o -name "libft.a" \) -delete
+	${RM} ${LIB}
 
 re: fclean all

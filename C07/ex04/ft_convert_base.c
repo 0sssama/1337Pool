@@ -6,12 +6,11 @@
 /*   By: olabrahm <olabrahm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 14:54:45 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/10/04 16:46:23 by olabrahm         ###   ########.fr       */
+/*   Updated: 2021/10/06 14:47:07 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <unistd.h>
 
 int		ft_atoi_base(char *str, char *base);
 char	*ft_putnbr_base(int nbr, char *base);
