@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft.h                                               :+:      :+:    :+:   */
+/*   ft_count_if.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olabrahm <olabrahm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/04 08:30:22 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/10/05 11:50:48 by olabrahm         ###   ########.fr       */
+/*   Created: 2021/10/09 09:52:53 by olabrahm          #+#    #+#             */
+/*   Updated: 2021/10/09 10:10:44 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_H
-# define FT_H
+int	ft_count_if(char **tab, int length, int (*f)(char *))
+{
+	int	i;
+	int	count;
 
-void	ft_putchar(char c);
-void	ft_swap(int *a, int *b);
-void	ft_putstr(char *str);
-int		ft_strlen(char *str);
-int		ft_strcmp(char *s1, char *s2);
-
-#endif
+	i = 0;
+	count = 0;
+	while (i < length)
+	{
+		if ((*f)(tab[i]))
+			count++;
+		i++;
+	}
+	return (count);
+}

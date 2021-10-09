@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft.h                                               :+:      :+:    :+:   */
+/*   ttwab.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olabrahm <olabrahm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/04 08:30:22 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/10/05 11:50:48 by olabrahm         ###   ########.fr       */
+/*   Created: 2021/10/09 10:49:20 by olabrahm          #+#    #+#             */
+/*   Updated: 2021/10/09 12:24:23 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_H
-# define FT_H
+#ifndef TTWAB_H
+# define TTWAB_H
 
-void	ft_putchar(char c);
-void	ft_swap(int *a, int *b);
+# include <unistd.h>
+
+void	ft_putnbr(int nb);
+int		ft_atoi(char *str);
+int		ft_op_valid(char *str);
+int		addition(int a, int b);
+int		subtract(int a, int b);
+int		division(int a, int b);
+int		multiply(int a, int b);
+int		modulo(int a, int b);
 void	ft_putstr(char *str);
-int		ft_strlen(char *str);
-int		ft_strcmp(char *s1, char *s2);
+void	ft_operate(int n1, int n2, char op);
 
 #endif

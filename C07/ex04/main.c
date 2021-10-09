@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olabrahm <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: olabrahm <olabrahm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/02 15:10:17 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/10/02 15:10:18 by olabrahm         ###   ########.fr       */
+/*   Created: 2021/10/09 09:05:24 by olabrahm          #+#    #+#             */
+/*   Updated: 2021/10/09 09:07:24 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,15 @@ void	ft_putnbr_base(int nbr, char *base);
 
 int	main(int ac, char **av)
 {
-	char	*str;
-
-	if (ac < 4)
-	{
-		puts("[!]	An error has occurred!");
-		puts("[!]	PLS make sure to run the program in this syntax :");
-		puts("	./[PROGRAM NAME] [NUMBER] [BASE FROM] [BASE TO]");
-	}
-	else
-	{
-		str = ft_convert_base(av[1], av[2], av[3]);
-		printf("%s\n", str);
-	}
+	(void) ac;
+	(void) av;
+	printf("%s (Expected : %s)\n", ft_convert_base("15", "0123456789", "01"), "1111");
+	printf("%s (Expected : %s)\n", ft_convert_base("10000", "01", "0123456789"), "16");
+	printf("%s (Expected : %s)\n", ft_convert_base("-31", "0123456789", "0123456789abcdef"), "-1f");
+	printf("%s (Expected : %s)\n", ft_convert_base("+1f", "0123456789abcdef", "0123456789"), "31");
+	printf("%s (Expected : %s)\n", ft_convert_base("0", "0123456789", "0123456789abcdef"), "0");
+	printf("%s (Expected : %s)\n", ft_convert_base("0.1234567", "0123456789", "0123456789"), "0");
+	printf("%s (Expected : %s)\n", ft_convert_base("2147483647", "0123456789", "0123456789abcdef"), "7fffffff");
+	printf("%s (Expected : %s)\n", ft_convert_base("-80000000", "0123456789abcdef", "0123456789"), "-2147483648");
 	return (0);
 }

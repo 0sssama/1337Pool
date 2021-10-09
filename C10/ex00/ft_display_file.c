@@ -6,7 +6,7 @@
 /*   By: olabrahm <olabrahm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 11:25:26 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/10/07 14:01:58 by olabrahm         ###   ########.fr       */
+/*   Updated: 2021/10/07 16:35:58 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,5 @@ int	main(int ac, char **av)
 	}
 	file_read = read(file_open, content, 500);
 	content[file_read] = '\0';
-	printf("%d\n", file_read);
-	printf("%s\n", content);
 	close(file_open);
 }

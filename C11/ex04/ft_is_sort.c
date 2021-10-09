@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft.h                                               :+:      :+:    :+:   */
+/*   ft_is_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olabrahm <olabrahm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/04 08:30:22 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/10/05 11:50:48 by olabrahm         ###   ########.fr       */
+/*   Created: 2021/10/09 10:27:40 by olabrahm          #+#    #+#             */
+/*   Updated: 2021/10/09 10:34:52 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_H
-# define FT_H
+int	ft_is_sort(int *tab, int length, int (*f)(int, int))
+{
+	int	i;
+	int	j;
 
-void	ft_putchar(char c);
-void	ft_swap(int *a, int *b);
-void	ft_putstr(char *str);
-int		ft_strlen(char *str);
-int		ft_strcmp(char *s1, char *s2);
-
-#endif
+	i = 0;
+	while (i < length - 1)
+	{
+		j = i + 1;
+		while (j < length)
+		{
+			if ((*f)(tab[j], tab[i]) < 0)
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}

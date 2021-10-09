@@ -6,7 +6,7 @@
 /*   By: olabrahm <olabrahm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 15:09:00 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/10/07 16:19:19 by olabrahm         ###   ########.fr       */
+/*   Updated: 2021/10/09 09:08:05 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,8 @@ char	*ft_putnbr_base(int nbr, char *base)
 	ft_print_base_value(nbr, base_len, base);
 	g_output_str[g_output_index] = '\0';
 	ft_rev_str(g_output_str, g_start_index);
+	free(g_output_str);
+	g_output_index = 0;
+	g_start_index = 0;
 	return (g_output_str);
 }

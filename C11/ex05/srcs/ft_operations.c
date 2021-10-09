@@ -1,22 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft.h                                               :+:      :+:    :+:   */
+/*   ft_operations.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olabrahm <olabrahm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/04 08:30:22 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/10/05 11:50:48 by olabrahm         ###   ########.fr       */
+/*   Created: 2021/10/09 11:59:52 by olabrahm          #+#    #+#             */
+/*   Updated: 2021/10/09 12:02:17 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_H
-# define FT_H
+int	addition(int a, int b)
+{
+	return (a + b);
+}
 
-void	ft_putchar(char c);
-void	ft_swap(int *a, int *b);
-void	ft_putstr(char *str);
-int		ft_strlen(char *str);
-int		ft_strcmp(char *s1, char *s2);
+int	subtract(int a, int b)
+{
+	return (a - b);
+}
 
-#endif
+int	division(int a, int b)
+{
+	return (a / b);
+}
+
+int	multiply(int a, int b)
+{
+	return (a * b);
+}
+
+int	modulo(int a, int b)
+{
+	return (a % b);
+}

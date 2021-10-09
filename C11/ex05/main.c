@@ -1,22 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft.h                                               :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olabrahm <olabrahm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/04 08:30:22 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/10/05 11:50:48 by olabrahm         ###   ########.fr       */
+/*   Created: 2021/10/09 10:48:31 by olabrahm          #+#    #+#             */
+/*   Updated: 2021/10/09 12:30:41 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_H
-# define FT_H
+#include "ttwab.h"
 
-void	ft_putchar(char c);
-void	ft_swap(int *a, int *b);
-void	ft_putstr(char *str);
-int		ft_strlen(char *str);
-int		ft_strcmp(char *s1, char *s2);
+int	main(int ac, char **av)
+{
+	char	*op_str;
+	char	op;
+	int		n1;
+	int		n2;
 
-#endif
+	if (ac < 4)
+		return (-1);
+	n1 = ft_atoi(av[1]);
+	op_str = av[2];
+	n2 = ft_atoi(av[3]);
+	if (!ft_op_valid(op_str))
+	{
+		ft_putnbr(0);
+		ft_putstr("\n");
+		return (-1);
+	}
+	op = op_str[0];
+	ft_operate(n1, n2, op);
+	ft_putstr("\n");
+	return (0);
+}

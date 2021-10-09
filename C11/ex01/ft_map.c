@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft.h                                               :+:      :+:    :+:   */
+/*   ft_map.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olabrahm <olabrahm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/04 08:30:22 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/10/05 11:50:48 by olabrahm         ###   ########.fr       */
+/*   Created: 2021/10/09 09:37:35 by olabrahm          #+#    #+#             */
+/*   Updated: 2021/10/09 13:59:03 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_H
-# define FT_H
+#include <stdlib.h>
 
-void	ft_putchar(char c);
-void	ft_swap(int *a, int *b);
-void	ft_putstr(char *str);
-int		ft_strlen(char *str);
-int		ft_strcmp(char *s1, char *s2);
+int	*ft_map(int *tab, int length, int (*f)(int))
+{
+	int	*output;
+	int	i;
 
-#endif
+	output = (int *) malloc(length * sizeof(int));
+	if (output == 0)
+		return (0);
+	i = 0;
+	while (i < length)
+	{
+		output[i] = (*f)(tab[i]);
+		i++;
+	}
+	return (output);
+}
