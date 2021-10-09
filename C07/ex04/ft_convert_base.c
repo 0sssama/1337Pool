@@ -5,31 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: olabrahm <olabrahm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/02 14:54:45 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/10/06 14:47:07 by olabrahm         ###   ########.fr       */
+/*   Created: 2021/10/09 15:42:19 by olabrahm          #+#    #+#             */
+/*   Updated: 2021/10/09 19:34:53 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include <stdio.h>
 
-int		ft_atoi_base(char *str, char *base);
 char	*ft_putnbr_base(int nbr, char *base);
+int		ft_is_space(char c);
+int		ft_strlen(char *str);
 
-int	ft_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-int	ft_is_space(char c)
-{
-	return (c == ' ' || c == '\t' || c == '\r'
-		|| c == '\f' || c == '\v' || c == '\n');
-}
+int	g_bl;
+int	g_res;
+int	g_sig;
+int	g_i;
 
 int	ft_base_valid(char *base)
 {
@@ -37,11 +27,11 @@ int	ft_base_valid(char *base)
 	int	j;
 
 	i = 0;
-	if (!base || ft_strlen(base) <= 1)
+	if (ft_strlen(base) < 2)
 		return (0);
 	while (base[i])
 	{
-		if (base[i] == '+' || base[i] == '-' || ft_is_space(base[i]))
+		if (base[i] == '-' || base[i] == '+' || ft_is_space(base[i]))
 			return (0);
 		i++;
 	}
@@ -60,6 +50,20 @@ int	ft_base_valid(char *base)
 	return (1);
 }
 
+int	pos(char *s, char c)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == c)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
 int	ft_get_index(char c, char *str)
 {
 	int	i;
@@ -72,6 +76,30 @@ int	ft_get_index(char c, char *str)
 		i++;
 	}
 	return (-1);
+}
+
+int	ft_atoi_base(char *str, char *base)
+{
+	int	output;
+	int	negative;
+	int	i;
+
+	negative = 1;
+	i = 0;
+	output = 0;
+	if (!ft_base_valid(base))
+		return (0);
+	while (ft_is_space(str[i]))
+		i++;
+	while (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			negative *= -1;
+		i++;
+	}
+	while (str[i] && ft_get_index(str[i], base) >= 0)
+		output = (output * ft_strlen(base)) + ft_get_index(str[i++], base);
+	return (output * negative);
 }
 
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to)

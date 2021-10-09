@@ -29,9 +29,9 @@ ${OBJCTS}: ${SRCS}
 
 clean:
 	${RM} ${OBJCTS}
-	${RM} ${LIB}
-	${RM} ${OUT}
 
 fclean: clean
+	${RM} ${LIB}
+	${RM} ${OUT}
 
 re: all

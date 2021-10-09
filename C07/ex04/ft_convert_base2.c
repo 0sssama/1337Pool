@@ -5,122 +5,90 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: olabrahm <olabrahm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/02 15:09:00 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/10/09 09:08:05 by olabrahm         ###   ########.fr       */
+/*   Created: 2021/10/09 15:45:54 by olabrahm          #+#    #+#             */
+/*   Updated: 2021/10/09 19:35:14 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int		ft_strlen(char *str);
-int		ft_get_index(char c, char *str);
-int		ft_is_space(char c);
-int		g_start_index = 0;
-int		g_output_index = 0;
 char	*g_output_str;
+int		g_output_index = 0;
+int		g_bl;
+int		g_size;
 
-int	ft_atoi_base(char *str, char *base)
+int	ft_strlen(char *str)
 {
-	int	output;
-	int	negative;
 	int	i;
 
-	negative = 1;
 	i = 0;
-	output = 0;
-	while (ft_is_space(str[i]))
+	while (str[i])
 		i++;
-	while (str[i] == '+' || str[i] == '-')
-	{
-		if (str[i] == '-')
-			negative *= -1;
-		i++;
-	}
-	while (str[i] && ft_get_index(str[i], base) >= 0)
-		output = (output * ft_strlen(base)) + ft_get_index(str[i++], base);
-	return (output * negative);
+	return (i);
 }
 
-void	ft_rev_str(char *str, int start_index)
+int	ft_is_space(char c)
 {
-	int		i;
-	int		j;
-	int		str_len;
-	char	temp;
-
-	i = start_index;
-	str_len = ft_strlen(str);
-	j = str_len - 1;
-	while (i < j)
-	{
-		temp = str[i];
-		str[i] = str[j];
-		str[j] = temp;
-		i++;
-		j--;
-	}
+	return (c == '\t' || c == '\n' || c == '\f'
+		|| c == '\r' || c == ' ' || c == '\v');
 }
 
-int	ft_get_size(int nbr, int len)
+int	ft_size(int nbr)
 {
 	int	i;
 
 	if (nbr == 0)
 		return (1);
-	i = 1;
+	i = 0;
 	while (nbr)
 	{
-		nbr /= len;
+		nbr /= g_bl;
 		i++;
 	}
 	return (i);
 }
 
-void	ft_print_base_value(int nbr, int base_len, char *base)
+void	ft_putnbr_base_value(int nb, char *b)
 {
 	unsigned int	i;
 	unsigned int	bl;
+	int				len;
 
-	bl = (unsigned int) base_len;
-	if (nbr < 0)
+	bl = (unsigned int)g_bl;
+	if (nb < 0)
 	{
-		g_output_str[0] = '-';
-		g_start_index = 1;
-		g_output_index++;
-		i = (unsigned int)(nbr * -1);
+		i = (unsigned int)(nb * -1);
+		g_output_index = 1;
 	}
 	else
-		i = (unsigned int) nbr;
-	if (i == 0)
 	{
-		g_output_str[g_output_index] = base[0];
-		g_output_index++;
+		i = (unsigned int)nb;
+		g_output_index = 0;
 	}
-	while (i)
+	len = g_size;
+	while (g_output_index < len)
 	{
-		g_output_str[g_output_index] = base[i % base_len];
-		g_output_index++;
-		i /= base_len;
+		g_output_str[--len] = b[i % bl];
+		i /= bl;
 	}
 }
 
 char	*ft_putnbr_base(int nbr, char *base)
 {
-	int		base_len;
-	int		size;
+	int		i;
 
-	base_len = ft_strlen(base);
-	size = ft_get_size(nbr, base_len);
-	if (nbr < 0)
-		size++;
-	g_output_str = (char *) malloc(size * sizeof(char) + 1);
-	if (g_output_str == 0)
-		return (0);
-	ft_print_base_value(nbr, base_len, base);
-	g_output_str[g_output_index] = '\0';
-	ft_rev_str(g_output_str, g_start_index);
-	free(g_output_str);
 	g_output_index = 0;
-	g_start_index = 0;
+	i = 0;
+	g_bl = ft_strlen(base);
+	g_size = ft_size(nbr);
+	if (nbr < 0)
+		g_size++;
+	g_output_str = (char *) malloc(g_size * sizeof(char) + 1);
+	if (!g_output_str)
+		return (0);
+	if (nbr < 0)
+		g_output_str[0] = '-';
+	ft_putnbr_base_value(nbr, base);
+	g_output_str[g_size] = '\0';
 	return (g_output_str);
 }
