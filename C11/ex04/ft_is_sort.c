@@ -6,11 +6,11 @@
 /*   By: olabrahm <olabrahm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 10:27:40 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/10/09 18:16:38 by olabrahm         ###   ########.fr       */
+/*   Updated: 2021/10/10 09:53:20 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_is_sort(int *tab, int length, int (*f)(int, int))
+int	ft_is_sorted_dir1(int *tab, int length, int (*f)(int, int))
 {
 	int	i;
 	int	j;
@@ -21,7 +21,7 @@ int	ft_is_sort(int *tab, int length, int (*f)(int, int))
 		j = i + 1;
 		while (j < length)
 		{
-			if ((*f)(tab[j], tab[i]) < 0)
+			if ((*f)(tab[i], tab[j]) < 0)
 				return (0);
 			j++;
 		}
@@ -30,18 +30,28 @@ int	ft_is_sort(int *tab, int length, int (*f)(int, int))
 	return (1);
 }
 
-#include <stdio.h>
-
-int	cmp(int a, int b)
+int	ft_is_sorted_dir2(int *tab, int length, int (*f)(int, int))
 {
-	if (a < b)
-		return (-1);
-	return (0);
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < length - 1)
+	{
+		j = i + 1;
+		while (j < length)
+		{
+			if ((*f)(tab[i], tab[j]) >= 0)
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
 }
 
-int	main(void)
+int	ft_is_sort(int *tab, int length, int (*f)(int, int))
 {
-	int	tab[9] = {1, 2, 2, 2, 5, 6, 7, 8, 9};
-
-	printf("%d\n", ft_is_sort(tab, 9, &cmp));
+	return (ft_is_sorted_dir1(tab, length, f)
+		|| ft_is_sorted_dir2(tab, length, f));
 }

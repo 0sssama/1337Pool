@@ -6,7 +6,7 @@
 /*   By: olabrahm <olabrahm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 13:46:07 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/10/09 13:57:22 by olabrahm         ###   ########.fr       */
+/*   Updated: 2021/10/10 10:30:28 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ void	ft_advanced_sort_string_tab(char **tab, int (*cmp)(char *, char *))
 	tab_len = ft_tablen(tab);
 	while (i < tab_len - 1)
 	{
-		j = i + 1;
-		while (j < tab_len)
+		j = i;
+		while (j < tab_len - 1)
 		{
-			if ((*cmp)(tab[i], tab[j]) > 0)
+			if ((*cmp)(tab[j], tab[j + 1]) > 0)
 			{
-				temp = tab[i];
-				tab[i] = tab[j];
-				tab[j] = temp;
+				temp = tab[j];
+				tab[j] = tab[j + 1];
+				tab[j + 1] = temp;
 			}
 			j++;
 		}
