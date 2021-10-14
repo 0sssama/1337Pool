@@ -6,7 +6,7 @@
 /*   By: olabrahm <olabrahm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 10:23:41 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/10/05 15:25:47 by olabrahm         ###   ########.fr       */
+/*   Updated: 2021/10/13 14:44:36 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_strdup(char *src)
 	char	*ptr;
 	int		i;
 
-	ptr = (char *) malloc(ft_strlen(src) * sizeof(char) + 1);
+	ptr = (char *) malloc((ft_strlen(src) + 1) * sizeof(char));
 	if (ptr == 0)
 		return (0);
 	i = 0;

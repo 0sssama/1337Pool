@@ -1,39 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_bsq.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olabrahm <olabrahm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/09 11:06:02 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/10/13 14:35:00 by olabrahm         ###   ########.fr       */
+/*   Created: 2021/10/13 12:16:11 by olabrahm          #+#    #+#             */
+/*   Updated: 2021/10/13 17:59:11 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ttwab.h"
+#include "functions.h"
+#include "global_vars.h"
 
-void	ft_putchar(char c)
+void	ft_bsq(char **map)
 {
-	write(1, &c, 1);
-}
-
-void	ft_putnbr(int nb)
-{
-	if (nb == -2147483648)
+	ft_extract(map[0]);
+	if (g_y != 0 && ft_map_valid(map))
 	{
-		write(1, "-2147483648", 11);
-		return ;
-	}
-	if ((unsigned int) nb < 10 && (unsigned int) nb >= 0)
-		ft_putchar((unsigned int) nb + '0');
-	else if (nb >= 10)
-	{
-		ft_putnbr((unsigned int) nb / 10);
-		ft_putnbr((unsigned int) nb % 10);
+		ft_init_g_values(map);
+		if (ft_core())
+		{
+			ft_highlight_biggest_square();
+			ft_show_board();
+		}
+		else
+		{
+			ft_puterr("no valid square :( try another map!\n");
+			return ;
+		}
 	}
 	else
-	{
-		ft_putchar('-');
-		ft_putnbr(nb * -1);
-	}
+		ft_puterr("map error\n");
 }

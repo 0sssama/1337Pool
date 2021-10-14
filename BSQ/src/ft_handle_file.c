@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_handle_file.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olabrahm <olabrahm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/09 11:06:02 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/10/13 14:35:00 by olabrahm         ###   ########.fr       */
+/*   Created: 2021/10/13 12:13:08 by olabrahm          #+#    #+#             */
+/*   Updated: 2021/10/13 15:08:13 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ttwab.h"
+#include "functions.h"
+#include "global_vars.h"
 
-void	ft_putchar(char c)
+void	ft_handle_file(char *file_name)
 {
-	write(1, &c, 1);
-}
+	char	**map;
 
-void	ft_putnbr(int nb)
-{
-	if (nb == -2147483648)
+	g_size = 30000;
+	map = read_input(file_name);
+	if (!map)
 	{
-		write(1, "-2147483648", 11);
+		ft_puterr("map error\n");
 		return ;
 	}
-	if ((unsigned int) nb < 10 && (unsigned int) nb >= 0)
-		ft_putchar((unsigned int) nb + '0');
-	else if (nb >= 10)
-	{
-		ft_putnbr((unsigned int) nb / 10);
-		ft_putnbr((unsigned int) nb % 10);
-	}
-	else
-	{
-		ft_putchar('-');
-		ft_putnbr(nb * -1);
-	}
+	ft_bsq(map);
+	ft_reset_g_values();
 }

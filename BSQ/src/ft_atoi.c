@@ -1,39 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olabrahm <olabrahm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/09 11:06:02 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/10/13 14:35:00 by olabrahm         ###   ########.fr       */
+/*   Created: 2021/10/12 14:43:07 by olabrahm          #+#    #+#             */
+/*   Updated: 2021/10/12 14:53:20 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ttwab.h"
-
-void	ft_putchar(char c)
+int	num(char c)
 {
-	write(1, &c, 1);
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
 }
 
-void	ft_putnbr(int nb)
+int	ft_atoi(char *str, int i)
 {
-	if (nb == -2147483648)
+	int	res;
+	int	j;
+
+	j = 0;
+	res = 0;
+	while (num(str[j]) && str[j] && j <= i)
 	{
-		write(1, "-2147483648", 11);
-		return ;
+		res *= 10;
+		res += (int)str[j] - 48;
+		j++;
 	}
-	if ((unsigned int) nb < 10 && (unsigned int) nb >= 0)
-		ft_putchar((unsigned int) nb + '0');
-	else if (nb >= 10)
-	{
-		ft_putnbr((unsigned int) nb / 10);
-		ft_putnbr((unsigned int) nb % 10);
-	}
-	else
-	{
-		ft_putchar('-');
-		ft_putnbr(nb * -1);
-	}
+	return (res);
 }

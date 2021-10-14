@@ -1,39 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_puterr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olabrahm <olabrahm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/09 11:06:02 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/10/13 14:35:00 by olabrahm         ###   ########.fr       */
+/*   Created: 2021/10/13 15:24:27 by olabrahm          #+#    #+#             */
+/*   Updated: 2021/10/13 15:24:30 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ttwab.h"
+#include "functions.h"
+#include "global_vars.h"
 
-void	ft_putchar(char c)
+void	ft_puterr(char *str)
 {
-	write(1, &c, 1);
-}
-
-void	ft_putnbr(int nb)
-{
-	if (nb == -2147483648)
-	{
-		write(1, "-2147483648", 11);
-		return ;
-	}
-	if ((unsigned int) nb < 10 && (unsigned int) nb >= 0)
-		ft_putchar((unsigned int) nb + '0');
-	else if (nb >= 10)
-	{
-		ft_putnbr((unsigned int) nb / 10);
-		ft_putnbr((unsigned int) nb % 10);
-	}
-	else
-	{
-		ft_putchar('-');
-		ft_putnbr(nb * -1);
-	}
+	while (*str)
+		write(2, str++, 1);
 }

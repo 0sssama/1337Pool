@@ -6,7 +6,7 @@
 /*   By: olabrahm <olabrahm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 10:27:40 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/10/10 09:53:20 by olabrahm         ###   ########.fr       */
+/*   Updated: 2021/10/14 10:18:31 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_is_sorted_dir2(int *tab, int length, int (*f)(int, int))
 		j = i + 1;
 		while (j < length)
 		{
-			if ((*f)(tab[i], tab[j]) >= 0)
+			if ((*f)(tab[i], tab[j]) > 0)
 				return (0);
 			j++;
 		}

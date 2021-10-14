@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_global_vars.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olabrahm <olabrahm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/09 11:06:02 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/10/13 14:35:00 by olabrahm         ###   ########.fr       */
+/*   Created: 2021/10/13 12:14:39 by olabrahm          #+#    #+#             */
+/*   Updated: 2021/10/13 18:00:18 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ttwab.h"
+#include "functions.h"
+#include "global_vars.h"
 
-void	ft_putchar(char c)
+void	ft_reset_g_values(void)
 {
-	write(1, &c, 1);
+	if (g_obstacles)
+		free(g_obstacles);
+	if (g_board.bd)
+		free(g_board.bd);
 }
 
-void	ft_putnbr(int nb)
+void	ft_init_g_values(char **map)
 {
-	if (nb == -2147483648)
-	{
-		write(1, "-2147483648", 11);
-		return ;
-	}
-	if ((unsigned int) nb < 10 && (unsigned int) nb >= 0)
-		ft_putchar((unsigned int) nb + '0');
-	else if (nb >= 10)
-	{
-		ft_putnbr((unsigned int) nb / 10);
-		ft_putnbr((unsigned int) nb % 10);
-	}
-	else
-	{
-		ft_putchar('-');
-		ft_putnbr(nb * -1);
-	}
+	g_board.bd = map;
+	g_board.x = g_x;
+	g_board.y = g_y;
+	g_board.obs_count = ft_obs_count();
+	g_obstacles = ft_get_obstacles();
 }

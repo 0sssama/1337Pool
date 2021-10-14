@@ -1,9 +1,9 @@
 CC=gcc
 FLAGS=-Wall -Wextra -Werror
 INCLUDES=includes
-SRCS=$(wildcard srcs/*.c)
+SRCS=$(wildcard src/*.c)
 OBJS=$(SRCS:.c=.o)
-BIN=do-op
+BIN=bsq
 
 .PHONY: all clean fclean
 

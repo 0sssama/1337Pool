@@ -1,39 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olabrahm <olabrahm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/09 11:06:02 by olabrahm          #+#    #+#             */
-/*   Updated: 2021/10/13 14:35:00 by olabrahm         ###   ########.fr       */
+/*   Created: 2021/10/09 10:48:31 by olabrahm          #+#    #+#             */
+/*   Updated: 2021/10/14 11:36:12 by olabrahm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ttwab.h"
 
-void	ft_putchar(char c)
+int	main(int ac, char **av)
 {
-	write(1, &c, 1);
-}
+	int		n1;
+	int		n2;
+	int		result;
+	char	op;
 
-void	ft_putnbr(int nb)
-{
-	if (nb == -2147483648)
+	if (ac == 4)
 	{
-		write(1, "-2147483648", 11);
-		return ;
+		n1 = ft_atoi(av[1]);
+		op = av[2][0];
+		n2 = ft_atoi(av[3]);
+		if (n2 == 0 && op == '/')
+		{
+			ft_puterr("Stop : division by zero\n");
+			return (-1);
+		}
+		if (n2 == 0 && op == '%')
+		{
+			ft_puterr("Stop : modulo by zero\n");
+			return (-1);
+		}
+		ft_operate(n1, n2, op, &result);
+		ft_putnbr(result);
+		write(1, "\n", 1);
 	}
-	if ((unsigned int) nb < 10 && (unsigned int) nb >= 0)
-		ft_putchar((unsigned int) nb + '0');
-	else if (nb >= 10)
-	{
-		ft_putnbr((unsigned int) nb / 10);
-		ft_putnbr((unsigned int) nb % 10);
-	}
-	else
-	{
-		ft_putchar('-');
-		ft_putnbr(nb * -1);
-	}
+	return (0);
 }
